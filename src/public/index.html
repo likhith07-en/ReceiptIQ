@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structured Data Extractor UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/ui/styles.css" />
+</head>
+<body>
+  <div class="orb orb-one" aria-hidden="true"></div>
+  <div class="orb orb-two" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Structured Data Extractor</p>
+    <h1>Turn messy expense text into clean database fields.</h1>
+    <p class="subtitle">
+      Paste receipts, chat snippets, or invoice lines. The API extracts values,
+      scores confidence per field, and marks low-confidence items for review.
+    </p>
+  </header>
+
+  <main class="layout">
+    <section class="panel input-panel" aria-labelledby="extract-title">
+      <h2 id="extract-title">Input</h2>
+
+      <form id="extractForm" class="extract-form">
+        <label for="inputText">Raw transaction text</label>
+        <textarea
+          id="inputText"
+          name="text"
+          rows="10"
+          placeholder="Example: Paid Rs 1250 to AWS India on 12 March 2024. Invoice INV-2024-0312."
+          required
+        ></textarea>
+
+        <div class="actions">
+          <button type="submit" id="extractBtn">Extract Structured Data</button>
+          <button type="button" id="clearBtn" class="ghost">Clear</button>
+        </div>
+      </form>
+
+      <div class="sample-row">
+        <p>Quick samples:</p>
+        <div id="sampleButtons" class="sample-buttons"></div>
+      </div>
+    </section>
+
+    <section class="panel output-panel" aria-labelledby="result-title">
+      <div class="output-head">
+        <h2 id="result-title">Output</h2>
+        <span id="statusBadge" class="badge neutral">Idle</span>
+      </div>
+
+      <p id="resultHint" class="hint">Run extraction to see parsed fields.</p>
+
+      <div id="summary" class="summary hidden" aria-live="polite"></div>
+      <div id="fieldsGrid" class="fields-grid" aria-live="polite"></div>
+
+      <section id="rawWrap" class="raw-wrap hidden" aria-label="Raw API response">
+        <div class="raw-head">
+          <h3>Raw JSON</h3>
+          <button type="button" id="copyBtn" class="ghost small">Copy JSON</button>
+        </div>
+        <pre id="rawJson"></pre>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footnote">
+    UI built on top of the existing API endpoint: <code>POST /extract</code>
+  </footer>
+
+  <script src="/ui/app.js" defer></script>
+</body>
+</html>
