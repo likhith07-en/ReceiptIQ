@@ -1,4 +1,4 @@
-# Structured Data Extractor - Nestack SDE Assessment
+# Structured Data Extractor
 
 A Node.js REST service that converts unstructured financial text into clean,
 database-ready JSON fields with per-field confidence and review flags.
@@ -237,56 +237,6 @@ After model output, values are normalized:
 - npm start: Run API server
 - npm dev: Run server with nodemon
 - npm test: Run sample extraction suite and write results.json
-
----
-
-## Troubleshooting
-
-### ENOENT package.json
-
-If npm cannot find package.json, run commands from the nested project folder:
-
-```powershell
-cd structured-data-extractor
-npm start
-```
-
-### ANTHROPIC_API_KEY is required
-
-You are using LLM_PROVIDER=anthropic without a key. For free local mode, set:
-
-```env
-LLM_PROVIDER=ollama
-```
-
-### ollama command not found
-
-Install Ollama and restart terminal, then run:
-
-```bash
-ollama pull llama3.1:8b
-ollama serve
-```
-
-### Could not reach Ollama at localhost:11434
-
-Make sure Ollama is running and OLLAMA_BASE_URL matches your local setup.
-
-### Port already in use
-
-Set a different port in .env:
-
-```env
-PORT=3001
-```
-
----
-
-## Security Notes
-
-- Do not commit real API keys to source control.
-- Keep .env private.
-- If a key is ever exposed, rotate/revoke it immediately.
 
 ---
 
